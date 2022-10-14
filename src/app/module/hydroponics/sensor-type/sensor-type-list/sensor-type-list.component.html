@@ -1,0 +1,46 @@
+<h2 class="float-left">{{ "page.sensorTypeList.title" | translate }}</h2>
+<div class="float-right" *ngIf="hasSensorTypeWritePermission()">
+  <a [routerLink]="SENSOR_TYPE_PATH_FULL.ADD" class="btn btn-success my-3">
+    {{ "page.sensorTypeList.add" | translate }}
+    <fa-icon [icon]="FAS.faPlus"></fa-icon>
+  </a>
+</div>
+<table
+  class="table table-striped"
+  *ngIf="sensorTypeList?.length > 0; else noContent"
+>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{ "page.sensorTypeList.table.type" | translate }}</th>
+      <th scope="col">
+        {{ "page.sensorTypeList.table.measuringUnit" | translate }}
+      </th>
+      <th scope="col">
+        {{ "page.sensorTypeList.table.actions" | translate }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sensorType of sensorTypeList">
+      <td scope="row">{{ sensorType.id }}</td>
+      <td>{{ sensorType.type }}</td>
+      <td>{{ sensorType.measuringUnit }}</td>
+      <td class="justify">
+        <app-sensor-type-actions
+          [sensorType]="sensorType"
+          (sensorTypeDeleted)="sensorTypeDeleted($event)"
+          [hasWritePermission]="hasSensorTypeWritePermission()"
+        ></app-sensor-type-actions>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noContent>
+  <div class="float-left container">
+    <h5 class="text-danger">
+      {{ "page.sensorTypeList.noSensorTypes" | translate }}
+    </h5>
+  </div>
+</ng-template>

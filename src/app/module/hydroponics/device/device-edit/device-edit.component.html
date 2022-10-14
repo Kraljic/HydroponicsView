@@ -1,0 +1,7 @@
+<h2 *ngIf="true">{{ "page.deviceForm.titleEdit" | translate }}</h2>
+<app-device-form
+  formType="EDIT"
+  [deviceCommand]="deviceCommand"
+  [deviceId]="device.id"
+  *ngIf="device"
+></app-device-form>

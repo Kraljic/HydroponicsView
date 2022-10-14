@@ -1,0 +1,37 @@
+<div>
+  <h2 class="d-inline">
+    {{ "page.topicManagementInfo.title" | translate }}
+
+    &nbsp;
+    <a
+      [routerLink]
+      [ngbTooltip]="'page.topicManagementInfo.rebuild' | translate"
+      (click)="rebuild()"
+      *ngIf="canManageTopics()"
+    >
+      <fa-icon [icon]="FAS.faHammer" class="text-info"></fa-icon>
+    </a>
+    &nbsp;
+    <a
+      [routerLink]
+      [ngbTooltip]="'page.topicManagementInfo.resetKeys' | translate"
+      (click)="modalResetKeys.open()"
+      *ngIf="canManageTopics()"
+    >
+      <fa-icon [icon]="FAS.faSyncAlt" class="text-danger"></fa-icon>
+    </a>
+  </h2>
+</div>
+
+<app-base-modal
+  [config]="MODAL_CONFIRM_CONFIG"
+  [title]="'component.modal.topics.resetTopicKeys.title' | translate"
+  [message]="'component.modal.topics.resetTopicKeys.message' | translate"
+  (confirmEvent)="resetTopicKeys()"
+  #modalResetKeys
+></app-base-modal>
+
+<app-topic-info-template
+  [userTopics]="userTopics"
+  *ngFor="let userTopics of userTopicsList"
+></app-topic-info-template>

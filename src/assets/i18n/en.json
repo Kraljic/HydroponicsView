@@ -1,0 +1,502 @@
+{
+  "app": {
+    "title": "Hydroponics Monitor",
+    "subtitle": "Welcome",
+    "copyRight": "Marko Kraljić"
+  },
+  "local": {
+    "dateTimeFormat": "dd.MM.yyyy. HH:mm:ss"
+  },
+  "common": {
+    "true": "Yes",
+    "false": "No"
+  },
+  "validation": {
+    "required": "{{controlName}} is required.",
+    "minlength": "{{controlName}} is to short.",
+    "email": "Email is not valid",
+
+    "pw_lowercase": "Password should contain at least one lower letter.",
+    "pw_uppercase": "Password should contain at least one upper letter.",
+    "pw_special": "Password should contain at least one special character.",
+    "pw_number": "Password should contain at least one digit.",
+
+    "mustMatch": "Passwords do not match.",
+
+    "register": {}
+  },
+  "error": {
+    "error": "Error",
+    "message": {
+      "pageNotFound": "Page not found.",
+      "forbidden": "Access denied.",
+      "unauthorized": "Unauthorized."
+    }
+  },
+  "notification": {
+    "success": {
+      "default": "Operation finished successfully.",
+
+      "editProfile": "Profile edited successfully.",
+      "editPassword": "Password changed successfully.",
+
+      "userAdd": "User '{{username}}' was created.",
+      "userDelete": "User '{{username}}' was deleted.",
+      "userRolesAssign": "Roles for user '{{username}}' were successfully edited.",
+      "managementEditPassword": "Password for user '{{username}}' was changed successfully.",
+
+      "roleSaved": "Role '{{role}}' was saved successfully.",
+      "roleDelete": "Role '{{role}}' was deleted successfully.",
+
+      "device": {
+        "save": "Device '{{device}}' was saved successfully.",
+        "delete": "Device '{{device}}' was deleted successfully."
+      },
+      "sensor": {
+        "save": "Sensor '{{sensor}}' was saved successfully.",
+        "delete": "Sensor '{{sensor}}' was deleted successfully."
+      },
+      "sensorType": {
+        "save": "Sensor type '{{sensorType}}' was saved successfully.",
+        "delete": "Sensor type '{{sensorType}}' was deleted successfully."
+      },
+      "sensorVariable": {
+        "save": "Sensor variable was saved successfully."
+      },
+
+      "topicManagement": {
+        "save": "Topics for user '{{username}}' were saved successfully."
+      },
+      "topicManagementInfo": {
+        "rebuild": "Topics list was rebuilt.",
+        "resetKeys": "Topics keys were reset successfully."
+      }
+    },
+    "error": {
+      "default": "Whoops.. Something went wrong.",
+      "userAdd": "Something unexpected went wrong.",
+      "userNotFound": "User '{{username}}' was not found.",
+      "usernameNotProvided": "Username was not provided.",
+      "roleIdNotProvided": "Role id was not provided."
+    },
+    "info": {}
+  },
+  "component": {
+    "header": {
+      "menu": {
+        "home": "Home",
+        "management": "Management",
+        "users": "Users",
+        "roles": "Roles"
+      },
+      "user": {
+        "editProfile": "Edit profille",
+        "editPassword": "Change password",
+        "logout": "Logout"
+      },
+      "hydroponics": {
+        "title": "Hydroponics",
+        "device": "Device",
+        "sensor": "Sensor",
+        "sensorType": "Sensor type"
+      },
+      "notification": {
+        "title": "Notification",
+        "notificationToken": "Token",
+        "topicManagement": "Management"
+      }
+    },
+    "modal": {
+      "confirm": "Yes",
+      "deny": "No",
+      "cancle": "Cancle",
+      "close": "Close",
+      "save": "Save",
+      "delete": "Delete",
+      "role": {
+        "delete": {
+          "title": "Delete role",
+          "message": "Are you sure you want to delete role '<b>{{role}}</b>'?"
+        },
+        "lock": {
+          "title": "Lock role",
+          "message": "Are you sure you want to lock role '<b>{{role}}</b>'?"
+        },
+        "unlock": {
+          "title": "Unlock role",
+          "message": "Are you sure you want to unlock role '<b>{{role}}</b>'?"
+        }
+      },
+      "user": {
+        "delete": {
+          "title": "Delete user",
+          "message": "Are you sure you want to delete user '<b>{{username}}</b>'?"
+        },
+        "enable": {
+          "title": "Enable user",
+          "message": "Are you sure you want to enable user '<b>{{username}}</b>'?"
+        },
+        "disable": {
+          "title": "Disable user",
+          "message": "Are you sure you want to disable user '<b>{{username}}</b>'?"
+        },
+        "lock": {
+          "title": "Lock user",
+          "message": "Are you sure you want to lock user '<b>{{username}}</b>'?"
+        },
+        "unlock": {
+          "title": "Unlock user",
+          "message": "Are you sure you want to unlock user '<b>{{username}}</b>'?"
+        }
+      },
+      "device": {
+        "delete": {
+          "title": "Delete device",
+          "message": "Are you sure you want to delete device '<b>{{device}}</b>'?"
+        }
+      },
+      "sensor": {
+        "delete": {
+          "title": "Delete sensor",
+          "message": "Are you sure you want to delete sensor '<b>{{sensor}}</b>'?"
+        }
+      },
+      "sensorType": {
+        "delete": {
+          "title": "Delete sensor type",
+          "message": "Are you sure you want to delete sensor type '<b>{{sensorType}}</b>'?"
+        }
+      },
+
+      "topics": {
+        "resetTopicKeys": {
+          "title": "Reset keys of topics",
+          "message": "Are you sure you want to reset topic keys for all topics?"
+        }
+      },
+      "token": {
+        "reset": {
+          "title": "Reset notification access token",
+          "message": "Are you sure you want to reset notification access token?"
+        }
+      }
+    },
+    "dropdown": {
+      "selectAllText": "Select all",
+      "unSelectAllText": "Deselect all",
+      "searchPlaceholderText": "Search...",
+      "noDataAvailablePlaceholderText": "No data available.."
+    },
+    "button": {
+      "goBack": "Go Back"
+    }
+  },
+  "template": {
+    "deviceInfo": {
+      "title": "Device",
+      "name": "Name",
+      "description": "Description",
+      "firmware": "Firmware"
+    },
+    "sensorInfo": {
+      "title": "Sensor",
+      "name": "Name",
+      "isManaged": "Is managed",
+      "variable": "Variable",
+      "value": "Value",
+      "sensorType": "Sensor type"
+    },
+    "sensorType": {
+      "title": "Sensor type",
+      "name": "Name",
+      "description": "Description",
+      "firmware": "Firmware"
+    },
+    "userTopicInfo": {
+      "title": "Topics of {{username}}",
+      "topics": "Topics",
+      "edit": "Edit topics",
+      "noContent": "User is not subscribed to any topic yet"
+    }
+  },
+  "page": {
+    "special": {
+      "goHomeButton": "Home",
+      "goBackButton": "Go back",
+      "forbidden": {
+        "title": "403 Forbidden!",
+        "message": "Sorry, your access is refused due to security reasons of our server and also our sensitive data.<br/>Please go back to the previous page to continue browsing."
+      },
+      "notFound": {
+        "title": "404 Not Found!",
+        "message": "Sorry, the page you are looking for is missing.<br />Please go back to the previous page to continue browsing."
+      }
+    },
+    "login": {
+      "title": "Login",
+      "login": "Login",
+      "username": "Username",
+      "password": "Password",
+      "invalidCredentials": "Invalid credentials, please try again",
+      "placeholder": {
+        "username": "Enter username",
+        "password": "Enter password"
+      }
+    },
+    "home": {
+      "welcome": "Welcome back {{username}}!",
+      "weather": "Weather"
+    },
+    "editPassword": {
+      "title": "Edit password",
+      "oldPassword": "Old password",
+      "newPassword": "New password",
+      "newPasswordRepeat": "Repeat new password",
+      "save": "Change password",
+      "cancle": "Cancle",
+      "placeholder": {
+        "oldPassword": "Enter old password",
+        "newPassword": "Enter new password",
+        "newPasswordRepeat": "Repeat new password"
+      }
+    },
+    "editProfile": {
+      "title": "Edit prfile",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "save": "Save profile",
+      "cancle": "Cancle",
+      "placeholder": {
+        "firstName": "Enter first name",
+        "lastName": "Enter last name"
+      }
+    },
+    "register": {
+      "title": "Create new user",
+      "save": "Create user",
+      "cancle": "Cancle",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "roles": "Roles",
+      "placeholder": {
+        "username": "Enter username",
+        "email": "Enter email address",
+        "password": "Enter new password",
+        "roles": "Select roles"
+      }
+    },
+    "userList": {
+      "title": "User list",
+      "addUser": "Create",
+      "editUser": "Edit user",
+      "editPassword": "Edit password",
+      "editRoles": "Edit roles",
+      "userInfo": "User info",
+      "userUnlock": "Unlock user",
+      "userLock": "Lock user",
+      "userEnable": "Enable user account",
+      "userDisable": "Disable user account",
+      "deleteUser": "Delete user account",
+      "table": {
+        "username": "Username",
+        "email": "Email",
+        "actions": "Actions"
+      }
+    },
+    "userInfo": {
+      "statusLocked": "Locked",
+      "statusUnlocked": "Unlocked",
+      "roles": "Roles",
+      "goBackButton": "Go back",
+      "edit": "Edit user",
+      "delete": "Delete user"
+    },
+    "userRoles": {
+      "title": "Edit user roles",
+      "username": "User",
+      "roles": "Select roles",
+      "save": "Save roles",
+      "cancle": "Cancle",
+      "placeholder": {
+        "roles": "Select roles"
+      }
+    },
+    "roleList": {
+      "title": "Role list",
+      "addRole": "Create",
+      "roleInfo": "Role info",
+      "editRole": "Edit role",
+      "roleLock": "Lock role",
+      "roleUnlock": "Unlock role",
+      "deleteRole": "Delete role",
+      "table": {
+        "role": "Role",
+        "permissions": "Permissions",
+        "actions": "Actions"
+      }
+    },
+    "roleInfo": {
+      "statusLocked": "Locked",
+      "statusUnlocked": "Unlocked",
+      "authorities": "Permissions",
+      "users": "Users",
+      "goBackButton": "Go back",
+      "edit": "Edit role",
+      "delete": "Delete role"
+    },
+    "roleForm": {
+      "title": "Role edit",
+      "titleCreate": "Create role",
+      "titleEdit": "Edit role",
+      "save": "Save role",
+      "cancle": "Cancle",
+      "role": "Role name",
+      "authorities": "Permissions",
+      "placeholder": {
+        "role": "Enter role name",
+        "authorities": "Select role permissions"
+      }
+    },
+
+    "deviceList": {
+      "title": "Device list",
+      "info": "Device info",
+      "edit": "Edit device",
+      "delete": "Delete device",
+      "add": "Create",
+      "sensors": "Device sensors",
+      "noDevices": "No devices were found.",
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "firmware": "Firmware",
+        "actions": "Actions"
+      }
+    },
+    "deviceForm": {
+      "titleCreate": "Create device",
+      "titleEdit": "Edit device",
+      "name": "Name",
+      "description": "Description",
+      "firmware": "Firmware",
+      "cancle": "Cancle",
+      "save": "Save device",
+      "placeholder": {
+        "name": "Enter name",
+        "description": "Enter description",
+        "firmware": "Enter firmware version"
+      }
+    },
+    "deviceInfo": {
+      "title": "Device info"
+    },
+
+    "sensorList": {
+      "title": "Sensor list",
+      "info": "Sensor info",
+      "edit": "Edit sensor",
+      "delete": "Delete sensor",
+      "add": "Create",
+      "editVariable": "Edit sensor variable",
+      "noSensors": "No sensors were found",
+      "notConfigured": "Sensor not configured",
+      "table": {
+        "name": "Name",
+        "type": "Type",
+        "deviceName": "Device",
+        "actions": "Actions"
+      }
+    },
+    "sensorForm": {
+      "titleCreate": "Create sensor",
+      "titleEdit": "Edit sensor",
+      "name": "Name",
+      "isManaged": "Managed",
+      "device": "Device",
+      "sensorType": "Sensor type",
+      "cancle": "Cancle",
+      "save": "Save sensor",
+      "placeholder": {
+        "name": "Enter name",
+        "device": "Select device",
+        "sensorType": "Select sensor type"
+      }
+    },
+    "sensorInfo": {
+      "title": "Sensor info"
+    },
+
+    "sensorVariableForm": {
+      "title": "Edit sensor variable",
+      "sensorName": "Sensor",
+      "deviceName": "Device",
+      "sensorType": "Sensor type",
+      "minValue": "Minimum value",
+      "maxValue": "Maximum value",
+      "save": "Save variable",
+      "cancle": "Cancle",
+      "placeholder": {
+        "minValue": "Enter minimum value",
+        "maxValue": "Enter maximum value"
+      }
+    },
+
+    "sensorTypeList": {
+      "title": "Sensor type list",
+      "info": "Sensor type info",
+      "edit": "Edit sensor type",
+      "delete": "Delete sensor type",
+      "add": "Create",
+      "noSensorTypes": "No sensor types were found.",
+      "table": {
+        "type": "Type",
+        "displayName": "Name",
+        "measuringUnit": "Unit",
+        "actions": "Actions"
+      }
+    },
+    "sensorTypeForm": {
+      "titleCreate": "Create sensor type",
+      "titleEdit": "Edit sensor type",
+      "type": "Type",
+      "displayName": "Name",
+      "measuringUnit": "Unit",
+      "cancle": "Cancle",
+      "save": "Save type",
+      "placeholder": {
+        "type": "Enter type",
+        "displayName": "Enter display name",
+        "measuringUnit": "Enter measuring unit"
+      }
+    },
+    "sensorTypeInfo": {
+      "title": "Sensor type info"
+    },
+
+    "tokenInfo": {
+      "title": "Notification access token",
+      "token": "Token",
+      "show": "Show",
+      "hide": "Hide",
+      "reset": "Reset",
+      "copy": "Copy",
+      "tokenNote": "Copy and paste token in android app"
+    },
+    "topicManagementInfo": {
+      "title": "Topic info",
+      "rebuild": "Rebuild topic list from devices",
+      "resetKeys": "Reset keys of topics"
+    },
+    "topicManagementForm": {
+      "title": "Edit user topics",
+      "username": "User",
+      "topics": "Topics",
+      "save": "Save topics",
+      "cancle": "Cancle",
+      "placeholder": {
+        "topics": "Select topics for user to receive notifications"
+      }
+    }
+  }
+}

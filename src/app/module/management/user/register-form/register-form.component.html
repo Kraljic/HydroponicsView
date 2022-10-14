@@ -1,0 +1,98 @@
+<h2>{{ "page.register.title" | translate }}</h2>
+<form class="" [formGroup]="formGroup">
+  <label for="username">{{ "page.register.username" | translate }}</label>
+  <div class="form-group">
+    <input
+      formControlName="username"
+      [(ngModel)]="registerCommand.username"
+      type="text"
+      class="form-control"
+      [placeholder]="'page.register.placeholder.username' | translate"
+      maxlength="45"
+    />
+
+    <app-validation-error
+      [control]="f.username"
+      [controlName]="'username'"
+      [translationKey]="'register'"
+    ></app-validation-error>
+  </div>
+
+  <label for="email">{{ "page.register.email" | translate }}</label>
+  <div class="form-group">
+    <input
+      formControlName="email"
+      [(ngModel)]="registerCommand.email"
+      type="email"
+      class="form-control"
+      [placeholder]="'page.register.placeholder.email' | translate"
+      maxlength="100"
+    />
+
+    <app-validation-error
+      [control]="f.email"
+      [controlName]="'email'"
+      [translationKey]="'register'"
+    ></app-validation-error>
+  </div>
+
+  <label for="password">{{ "page.register.password" | translate }}</label>
+  <div class="form-group">
+    <input
+      formControlName="password"
+      [(ngModel)]="registerCommand.password"
+      type="password"
+      class="form-control"
+      [placeholder]="'page.register.placeholder.password' | translate"
+      maxlength="20"
+    />
+
+    <app-validation-error
+      [control]="f.password"
+      [controlName]="'password'"
+      [translationKey]="'register'"
+    ></app-validation-error>
+  </div>
+
+  <label for="roles">{{ "page.register.roles" | translate }}</label>
+  <div class="form-group">
+    <ng-multiselect-dropdown
+      [placeholder]="'page.register.placeholder.roles' | translate"
+      formControlName="roles"
+      [(ngModel)]="rolesSelected"
+      [settings]="multiselectSettings"
+      [data]="rolesList"
+      (onSelect)="rolesOnItemSelect($event)"
+    >
+    </ng-multiselect-dropdown>
+
+    <app-validation-error
+      [control]="f.roles"
+      [controlName]="'roles'"
+      [translationKey]="'register'"
+    ></app-validation-error>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="float-right">
+        <button
+          (click)="cancle()"
+          [disabled]="saving"
+          class="btn btn-outline-secondary mr-4"
+          type="button"
+        >
+          {{ "page.register.cancle" | translate }}
+        </button>
+        <button
+          (click)="save()"
+          [disabled]="!formGroup.valid || saving"
+          class="btn btn-success"
+          type="button"
+        >
+          {{ "page.register.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

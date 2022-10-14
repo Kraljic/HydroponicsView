@@ -1,0 +1,24 @@
+formObject,field,translationGroup,multiselectSettings,errorTranslation
+
+<div>
+  <label for="__[field]__"
+    >{{ "__[translationGroup]__.__[field]__" | translate }}</label
+  >
+  <div class="form-group">
+    <ng-multiselect-dropdown
+      [placeholder]="'__[translationGroup]__.placeholder.__[field]__' | translate"
+      formControlName="__[field]__"
+      [(ngModel)]="__[field]__Selected"
+      [settings]="__[multiselectSettings]__"
+      [data]="__[field]__List"
+      (onSelect)="__[field]__OnItemSelect($event)"
+    >
+    </ng-multiselect-dropdown>
+
+    <app-validation-error
+      [control]="f.__[field]__"
+      [controlName]="'__[field]__'"
+      [translationKey]="'__[errorTranslation]__'"
+    ></app-validation-error>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+formClass,translationGroup,formObject,showTitle
+
+<h2 *ngIf="__[showTitle]__">{{"__[translationGroup]__.title" | translate }}</h2>
+<form
+  class="__[formClass]__"
+  [formGroup]="formGroup"
+  *ngIf="__[formObject]__"
+>
+</CONTENT>
+</form>

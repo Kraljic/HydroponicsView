@@ -1,0 +1,79 @@
+
+<h2 *ngIf="false">{{"page.sensorForm.title" | translate }}</h2>
+<form
+  class=""
+  [formGroup]="formGroup"
+  *ngIf="sensorCommand"
+>
+
+<div>
+  <label for="name"
+    >{{ "page.sensorForm.name" | translate }}</label
+  >
+  <div class="form-group">
+    <input
+      formControlName="name"
+      [(ngModel)]="sensorCommand.name"
+      type="text"
+      class="form-control "
+      [placeholder]="'page.sensorForm.placeholder.name' | translate"
+      maxlength="45"
+    />
+
+    <app-validation-error
+      [control]="f.name"
+      [controlName]="'name'"
+      [translationKey]="'sensorForm'"
+    ></app-validation-error>
+  </div>
+</div>
+
+
+<div>
+  <label for="isManaged"
+    >{{ "page.sensorForm.isManaged" | translate }}</label
+  >
+  <div class="form-group">
+    <input
+      formControlName="isManaged"
+      [(ngModel)]="sensorCommand.isManaged"
+      type="checkbox"
+      class="form-control "
+      [placeholder]="'page.sensorForm.placeholder.isManaged' | translate"
+      
+    />
+
+    <app-validation-error
+      [control]="f.isManaged"
+      [controlName]="'isManaged'"
+      [translationKey]="'sensorForm'"
+    ></app-validation-error>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-right">
+      <button
+        (click)="cancle()"
+        [disabled]="saving"
+        class="btn btn-outline-secondary mr-4"
+        type="button"
+      >
+        {{ "page.sensorForm.cancle" | translate }}
+      </button>
+      <button
+        (click)="save()"
+        [disabled]="!formGroup.valid || saving"
+        class="btn btn-success"
+        type="button"
+      >
+        {{ "page.sensorForm.save" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+
+</form>

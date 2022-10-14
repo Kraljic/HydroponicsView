@@ -1,0 +1,115 @@
+<h2 class="float-left">{{ "page.roleList.title" | translate }}</h2>
+<div class="float-right" *ngIf="hasRoleManagementWritePermission()">
+  <a routerLink="/role-add" class="btn btn-success my-3">
+    {{ "page.roleList.addRole" | translate }}
+    <fa-icon [icon]="FAS.faPlusCircle"></fa-icon>
+  </a>
+</div>
+<table class="table table-striped" *ngIf="roleList">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{ "page.roleList.table.role" | translate }}</th>
+      <th scope="col">{{ "page.roleList.table.permissions" | translate }}</th>
+      <th scope="col">
+        {{ "page.roleList.table.actions" | translate }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let role of roleList">
+      <td scope="row">{{ role.id }}</td>
+      <td>{{ role.role }}</td>
+      <td>{{ filterAccessPermissions(role.authorities)?.join(", ") }}</td>
+      <td class="justify">
+        <span>
+          <a
+            routerLink="/role-info/{{ role.id }}"
+            [ngbTooltip]="'page.roleList.roleInfo' | translate"
+          >
+            <fa-icon [icon]="FAS.faInfoCircle" class="text-primary"></fa-icon>
+          </a>
+        </span>
+        &nbsp;
+        <ng-container
+          *ngIf="!role.locked && hasRoleManagementWritePermission()"
+        >
+          <span>
+            <a
+              routerLink="/role-edit/{{ role.id }}"
+              [ngbTooltip]="'page.roleList.editRole' | translate"
+            >
+              <fa-icon [icon]="FAS.faEdit" class="text-primary"></fa-icon>
+            </a>
+          </span>
+          &nbsp;
+          <span>
+            <app-base-modal
+              [config]="MODAL_DELETE_CONFIG"
+              [title]="'component.modal.role.delete.title' | translate"
+              [message]="
+                'component.modal.role.delete.message'
+                  | translate: { role: role.role }
+              "
+              (confirmEvent)="deleteRole(role)"
+              #modal
+            ></app-base-modal>
+            <a
+              [routerLink]=""
+              (click)="modal.open()"
+              [ngbTooltip]="'page.roleList.deleteRole' | translate"
+            >
+              <fa-icon [icon]="FAS.faTrash" class="text-danger"></fa-icon>
+            </a>
+          </span>
+          &nbsp;
+        </ng-container>
+        <ng-container *ngIf="canLockRoles()">
+          <span>
+            <app-base-modal
+              [config]="MODAL_CONFIRM_CONFIG"
+              [title]="
+                (role.locked
+                  ? 'component.modal.role.unlock.title'
+                  : 'component.modal.role.lock.title'
+                ) | translate
+              "
+              [message]="
+                (role.locked
+                  ? 'component.modal.role.unlock.message'
+                  : 'component.modal.role.lock.message'
+                ) | translate: { role: role.role }
+              "
+              (confirmEvent)="toggleRoleLock(role)"
+              #modalLock
+            ></app-base-modal>
+            <a
+              [routerLink]=""
+              (click)="modalLock.open()"
+              [ngbTooltip]="
+                (role.locked
+                  ? 'page.roleList.roleUnlock'
+                  : 'page.roleList.roleLock'
+                ) | translate
+              "
+            >
+              <ng-container *ngIf="role.locked">
+                <fa-icon [icon]="FAS.faLock" class="text-danger"></fa-icon>
+              </ng-container>
+              <ng-container *ngIf="!role.locked">
+                <fa-icon [icon]="FAS.faUnlock" class="text-success"></fa-icon>
+              </ng-container>
+            </a>
+          </span>
+        </ng-container>
+        <ng-container *ngIf="!canLockRoles()">
+          <span>
+            <ng-container *ngIf="role.locked">
+              <fa-icon [icon]="FAS.faLock" class="text-danger"></fa-icon>
+            </ng-container>
+          </span>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>

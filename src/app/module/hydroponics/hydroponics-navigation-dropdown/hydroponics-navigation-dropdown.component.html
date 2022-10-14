@@ -1,0 +1,45 @@
+<li class="nav-item" ngbDropdown>
+  <a
+    class="nav-link dropdown-toggle"
+    id="navbarDropdown"
+    role="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <fa-icon [icon]="FAS.faSeedling"></fa-icon>
+    {{ "component.header.hydroponics.title" | translate }}
+  </a>
+  <div aria-labelledby="navbarDropdown" ngbDropdownMenu>
+    <a
+      ngbDropdownItem
+      [routerLink]="DEVICE_PATH_FULL.LIST"
+      routerLinkActive="active"
+    >
+      <span class="w-25 d-inline-block text-right"
+        ><fa-icon [icon]="FAS.faSwatchbook"></fa-icon
+      ></span>
+      {{ "component.header.hydroponics.device" | translate }}</a
+    >
+    <a
+      ngbDropdownItem
+      [routerLink]="SENSOR_PATH_FULL.LIST"
+      routerLinkActive="active"
+    >
+      <span class="w-25 d-inline-block text-right"
+        ><fa-icon [icon]="FAS.faMicroscope"></fa-icon
+      ></span>
+      {{ "component.header.hydroponics.sensor" | translate }}</a
+    >
+    <a
+      ngbDropdownItem
+      [routerLink]="SENSOR_TYPE_PATH_FULL.LIST"
+      routerLinkActive="active"
+    >
+      <span class="w-25 d-inline-block text-right"
+        ><fa-icon [icon]="FAS.faAtom"></fa-icon
+      ></span>
+      {{ "component.header.hydroponics.sensorType" | translate }}</a
+    >
+  </div>
+</li>

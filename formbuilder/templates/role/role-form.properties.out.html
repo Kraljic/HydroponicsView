@@ -1,0 +1,80 @@
+
+<h2 *ngIf="false">{{"page.roleForm.title" | translate }}</h2>
+<form
+  class=""
+  [formGroup]="formGroup"
+  *ngIf="roleCommand"
+>
+
+<div>
+  <label for="role"
+    >{{ "page.roleForm.role" | translate }}</label
+  >
+  <div class="form-group">
+    <input
+      formControlName="role"
+      [(ngModel)]="roleCommand.role"
+      type="text"
+      class="form-control "
+      [placeholder]="'page.roleForm.placeholder.role' | translate"
+      maxlength="45"
+    />
+
+    <app-validation-error
+      [control]="f.role"
+      [controlName]="'role'"
+      [translationKey]="'roleForm'"
+    ></app-validation-error>
+  </div>
+</div>
+
+
+<div>
+  <label for="authorities"
+    >{{ "page.roleForm.authorities" | translate }}</label
+  >
+  <div class="form-group">
+    <ng-multiselect-dropdown
+      [placeholder]="'page.roleForm.placeholder.authorities' | translate"
+      formControlName="authorities"
+      [(ngModel)]="authoritiesSelected"
+      [settings]="multiselectSettings"
+      [data]="authoritiesList"
+      (onSelect)="authoritiesOnItemSelect($event)"
+    >
+    </ng-multiselect-dropdown>
+
+    <app-validation-error
+      [control]="f.authorities"
+      [controlName]="'authorities'"
+      [translationKey]="'roleForm'"
+    ></app-validation-error>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-right">
+      <button
+        (click)="cancle()"
+        [disabled]="saving"
+        class="btn btn-outline-secondary mr-4"
+        type="button"
+      >
+        {{ "page.roleForm.cancle" | translate }}
+      </button>
+      <button
+        (click)="save()"
+        [disabled]="!formGroup.valid || saving"
+        class="btn btn-success"
+        type="button"
+      >
+        {{ "page.roleForm.save" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+
+</form>

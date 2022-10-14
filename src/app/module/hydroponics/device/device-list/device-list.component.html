@@ -1,0 +1,50 @@
+<h2 class="float-left">{{ "page.deviceList.title" | translate }}</h2>
+<div class="float-right" *ngIf="hasDeviceWritePermission()">
+  <a [routerLink]="DEVICE_PATH_FULL.ADD" class="btn btn-success my-3">
+    {{ "page.deviceList.add" | translate }}
+    <fa-icon [icon]="FAS.faPlus"></fa-icon>
+  </a>
+</div>
+<table
+  class="table table-striped"
+  *ngIf="deviceList?.length > 0; else noContent"
+>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{ "page.deviceList.table.name" | translate }}</th>
+      <th scope="col">
+        {{ "page.deviceList.table.description" | translate }}
+      </th>
+      <th scope="col">
+        {{ "page.deviceList.table.firmware" | translate }}
+      </th>
+      <th scope="col">
+        {{ "page.deviceList.table.actions" | translate }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let device of deviceList">
+      <td scope="row">{{ device.id }}</td>
+      <td>{{ device.name }}</td>
+      <td>{{ device.description }}</td>
+      <td>{{ device.firmware }}</td>
+      <td class="justify">
+        <app-device-actions
+          [device]="device"
+          (deviceDeleted)="deviceDeleted($event)"
+          [hasWritePermission]="hasDeviceWritePermission()"
+        ></app-device-actions>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noContent>
+  <div class="float-left container">
+    <h5 class="text-danger">
+      {{ "page.deviceList.noDevices" | translate }}
+    </h5>
+  </div>
+</ng-template>

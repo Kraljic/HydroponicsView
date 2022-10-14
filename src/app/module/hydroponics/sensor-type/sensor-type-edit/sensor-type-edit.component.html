@@ -1,0 +1,7 @@
+<h2 *ngIf="true">{{ "page.sensorTypeForm.titleEdit" | translate }}</h2>
+<app-sensor-type-form
+  formType="EDIT"
+  [sensorTypeCommand]="sensorTypeCommand"
+  [sensorTypeId]="sensorType.id"
+  *ngIf="sensorType"
+></app-sensor-type-form>

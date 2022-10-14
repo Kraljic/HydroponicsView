@@ -1,0 +1,10 @@
+import { NOTIFICATION_MODULE_BASE_ROUTE } from '../../module-route-name.ts';
+
+const TOPIC_MANAGEMENT_BASE = 'topic-management';
+const TOPIC_MANAGEMENT_BASE_FULL =
+  NOTIFICATION_MODULE_BASE_ROUTE + '/' + TOPIC_MANAGEMENT_BASE;
+
+export const TOPIC_MANAGEMENT_PATH_FULL = {
+  EDIT: TOPIC_MANAGEMENT_BASE_FULL + '/edit',
+  INFO: TOPIC_MANAGEMENT_BASE_FULL + '/info',
+};

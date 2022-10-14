@@ -1,0 +1,14 @@
+<h4 *ngIf="getUser()">
+  {{ "page.home.welcome" | translate: { username: getUser().username } }}
+</h4>
+
+<a
+  class="weatherwidget-io"
+  href="https://forecast7.com/en/46d3916d44/cakovec/"
+  data-label_1="ČAKOVEC"
+  data-label_2="MEĐIMURJE"
+  data-theme="original"
+  style="display: none"
+  >ČAKOVEC WEATHER</a
+>
+<div class="weatherwidget"></div>

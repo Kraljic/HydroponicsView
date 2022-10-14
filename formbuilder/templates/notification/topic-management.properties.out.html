@@ -1,0 +1,70 @@
+
+<h2 *ngIf="true">{{"page.topicManagementForm.title" | translate }}</h2>
+<form
+  class=""
+  [formGroup]="formGroup"
+  *ngIf="topicManagementCommand"
+>
+
+<div>
+  <label>{{ "page.topicManagementForm.username" | translate }}</label>
+  <div class="form-group">
+    <input
+      [value]="username"
+      type="text"
+      class="form-control "
+      disabled
+    />
+  </div>
+</div>
+
+
+<div>
+  <label for="topics"
+    >{{ "page.topicManagementForm.topics" | translate }}</label
+  >
+  <div class="form-group">
+    <ng-multiselect-dropdown
+      [placeholder]="'page.topicManagementForm.placeholder.topics' | translate"
+      formControlName="topics"
+      [(ngModel)]="topicsSelected"
+      [settings]="multiselectSettings"
+      [data]="topicsList"
+      (onSelect)="topicsOnItemSelect($event)"
+    >
+    </ng-multiselect-dropdown>
+
+    <app-validation-error
+      [control]="f.topics"
+      [controlName]="'topics'"
+      [translationKey]="'topicManagementForm'"
+    ></app-validation-error>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-right">
+      <button
+        (click)="cancle()"
+        [disabled]="saving"
+        class="btn btn-outline-secondary mr-4"
+        type="button"
+      >
+        {{ "page.topicManagementForm.cancle" | translate }}
+      </button>
+      <button
+        (click)="save()"
+        [disabled]="!formGroup.valid || saving"
+        class="btn btn-success"
+        type="button"
+      >
+        {{ "page.topicManagementForm.save" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+
+</form>

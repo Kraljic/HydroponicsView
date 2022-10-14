@@ -1,0 +1,71 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <h3>{{ "template.sensorInfo.title" | translate }}</h3>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.sensorInfo.name" | translate }}</small>
+        </div>
+        <div class="col-md-10">{{ sensor.name }}</div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.sensorInfo.isManaged" | translate }}</small>
+        </div>
+        <div class="col-md-10">
+          {{ "common." + sensor.isManaged | translate }}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.sensorInfo.sensorType" | translate }}</small>
+        </div>
+        <div class="col-md-10">{{ sensor.sensorType.type }}</div>
+      </div>
+    </li>
+    <li class="list-group-item" *ngIf="sensor.simpleVariable">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.sensorInfo.variable" | translate }}</small>
+        </div>
+        <div class="col-md-2">
+          {{
+            sensor.simpleVariable.minValue +
+              " " +
+              sensor.sensorType.measuringUnit
+          }}
+        </div>
+        <div class="col-md-8">
+          {{
+            sensor.simpleVariable.maxValue +
+              " " +
+              sensor.sensorType.measuringUnit
+          }}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item" *ngIf="sensor.simpleValue">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.sensorInfo.value" | translate }}</small>
+        </div>
+        <div class="col-md-10">
+          {{
+            sensor.simpleValue.value +
+              " " +
+              sensor.sensorType.measuringUnit +
+              " @ " +
+              (sensor.simpleValue.updatedAt
+                | date: ("local.dateTimeFormat" | translate))
+          }}
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,66 @@
+<h2 class="float-left">{{ "page.sensorList.title" | translate }}</h2>
+<div class="float-right" *ngIf="hasSensorWritePermission()">
+  <a
+    [routerLink]="SENSOR_PATH_FULL.ADD"
+    [queryParams]="{ deviceId: deviceId }"
+    class="btn btn-success my-3"
+  >
+    {{ "page.sensorList.add" | translate }}
+    <fa-icon [icon]="FAS.faPlus"></fa-icon>
+  </a>
+</div>
+
+<table
+  class="table table-striped"
+  *ngIf="sensorList?.length > 0; else noContent"
+>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{ "page.sensorList.table.name" | translate }}</th>
+      <th scope="col">
+        {{ "page.sensorList.table.type" | translate }}
+      </th>
+      <th scope="col">
+        {{ "page.sensorList.table.deviceName" | translate }}
+      </th>
+      <th scope="col">
+        {{ "page.sensorList.table.actions" | translate }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sensor of sensorList">
+      <td scope="row">{{ sensor.id }}</td>
+      <td>
+        {{ sensor.name }}
+        <fa-icon
+          [icon]="FAS.faExclamationTriangle"
+          class="text-danger"
+          *ngIf="!sensor.simpleVariable"
+          [title]="'page.sensorList.notConfigured' | translate"
+        ></fa-icon>
+      </td>
+      <td>{{ sensor.sensorType.type }}</td>
+      <td>{{ sensor.device.name }}</td>
+      <td class="justify">
+        <app-sensor-actions
+          [sensor]="sensor"
+          (sensorDeleted)="sensorDeleted($event)"
+          [hasWritePermission]="hasSensorWritePermission()"
+          [hasSensorVariableWritePermission]="
+            hasSensorVariableWritePermission()
+          "
+        ></app-sensor-actions>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noContent>
+  <div class="float-left container">
+    <h5 class="text-danger">
+      {{ "page.sensorList.noSensors" | translate }}
+    </h5>
+  </div>
+</ng-template>

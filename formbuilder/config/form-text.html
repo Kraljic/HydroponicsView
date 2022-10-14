@@ -1,0 +1,23 @@
+formObject,translationGroup,field,type,class,validationRules,errorTranslation
+
+<div>
+  <label for="__[field]__"
+    >{{ "__[translationGroup]__.__[field]__" | translate }}</label
+  >
+  <div class="form-group">
+    <input
+      formControlName="__[field]__"
+      [(ngModel)]="__[formObject]__.__[field]__"
+      type="__[type]__"
+      class="form-control __[class]__"
+      [placeholder]="'__[translationGroup]__.placeholder.__[field]__' | translate"
+      __[validationRules]__
+    />
+
+    <app-validation-error
+      [control]="f.__[field]__"
+      [controlName]="'__[field]__'"
+      [translationKey]="'__[errorTranslation]__'"
+    ></app-validation-error>
+  </div>
+</div>

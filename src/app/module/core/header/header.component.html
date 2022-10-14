@@ -1,0 +1,137 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">{{ "app.title" | translate }}</a>
+
+  <ng-container *ngIf="isLoggedIn()">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/main"
+            ><fa-icon [icon]="FAS.faHome"></fa-icon>
+            {{ "component.header.menu.home" | translate }}</a
+          >
+        </li>
+        <ng-container
+          *ngIf="
+            hasAnyAccess(
+              AUTHORITIES.USERMANAGER_ACCESS,
+              AUTHORITIES.ROLEMANAGER_ACCESS
+            )
+          "
+        >
+          <li class="nav-item" ngbDropdown>
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <fa-icon [icon]="FAS.faTools"></fa-icon>
+              {{ "component.header.menu.management" | translate }}
+            </a>
+            <div aria-labelledby="navbarDropdown" ngbDropdownMenu>
+              <a
+                ngbDropdownItem
+                routerLink="/user-list"
+                routerLinkActive="active"
+                *ngIf="hasAccess(AUTHORITIES.USERMANAGER_ACCESS)"
+              >
+                <span class="w-25 d-inline-block text-right">
+                  <fa-icon [icon]="FAS.faUsers"></fa-icon>
+                </span>
+                {{ "component.header.menu.users" | translate }}</a
+              >
+              <a
+                ngbDropdownItem
+                routerLink="/role-list"
+                routerLinkActive="active"
+                *ngIf="hasAccess(AUTHORITIES.ROLEMANAGER_ACCESS)"
+              >
+                <span class="w-25 d-inline-block text-right">
+                  <fa-icon [icon]="FAS.faUserTie"></fa-icon>
+                </span>
+                {{ "component.header.menu.roles" | translate }}</a
+              >
+            </div>
+          </li>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            hasAllAccess(
+              AUTHORITIES.HYDROPONICS_ACCESS,
+              AUTHORITIES.HYDROPONICS_READ
+            )
+          "
+        >
+          <app-hydroponics-navigation-dropdown></app-hydroponics-navigation-dropdown>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            hasAnyAccess(
+              AUTHORITIES.NOTIFICATION_ACCESS,
+              AUTHORITIES.TOPICMANAGER_ACCESS
+            )
+          "
+        >
+          <app-notification-navigation-dropdown></app-notification-navigation-dropdown>
+        </ng-container>
+      </ul>
+      <ul class="navbar-nav my-2 my-lg-0">
+        <li class="nav-item" ngbDropdown>
+          <a
+            class="nav-link"
+            id="navbarDropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ngbDropdownToggle
+          >
+            <fa-icon [icon]="FAS.faCog"></fa-icon>
+            {{ getUsername() }}
+          </a>
+          <div
+            class="dropdown-menu-right"
+            aria-labelledby="navbarDropdown"
+            ngbDropdownMenu
+          >
+            <a
+              routerLink="/profile-edit"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ngbDropdownItem
+              ><fa-icon [icon]="FAS.faEdit"></fa-icon>
+              {{ "component.header.user.editProfile" | translate }}</a
+            >
+            <a
+              routerLink="/password-edit"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ngbDropdownItem
+              ><fa-icon [icon]="FAS.faKey"></fa-icon>
+              {{ "component.header.user.editPassword" | translate }}</a
+            >
+            <div class="dropdown-divider"></div>
+
+            <a class="dropdown-item" (click)="logout()" routerLink=""
+              ><fa-icon [icon]="FAS.faSignOutAlt"></fa-icon>
+              {{ "component.header.user.logout" | translate }}</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+</nav>

@@ -1,0 +1,7 @@
+<h2>{{ "page.deviceInfo.title" | translate }}</h2>
+
+<ng-container *ngIf="device">
+  <app-device-info-template [device]="device"></app-device-info-template>
+</ng-container>
+
+<app-back-button></app-back-button>

@@ -1,0 +1,37 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <h3 class="d-inline">
+      {{
+        "template.userTopicInfo.title"
+          | translate: { username: userTopics.username }
+      }}
+    </h3>
+    <a
+      [routerLink]="[TOPIC_MANAGEMENT_PATH_FULL.EDIT, userTopics.username]"
+      class="float-right"
+      *ngIf="canManageTopics()"
+    >
+      <fa-icon [icon]="FAS.faEdit" class="text-warning"></fa-icon>
+      {{ "template.userTopicInfo.edit" | translate }}
+    </a>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.userTopicInfo.topics" | translate }}</small>
+        </div>
+        <div class="col-md-10">
+          <ul *ngIf="userTopics?.topics?.length > 0; else noContent">
+            <li *ngFor="let topic of userTopics.topics">{{ topic.name }}</li>
+          </ul>
+          <ng-template #noContent>
+            <span class="text-danger">{{
+              "template.userTopicInfo.noContent" | translate
+            }}</span>
+          </ng-template>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

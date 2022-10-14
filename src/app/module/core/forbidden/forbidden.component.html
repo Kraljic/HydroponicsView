@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-danger">
+        {{ "page.special.forbidden.title" | translate }}
+      </h3>
+      <p [innerHTML]="'page.special.forbidden.message' | translate"></p>
+      <a class="btn btn-primary" href="javascript:history.back()">{{
+        "page.special.goBackButton" | translate
+      }}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<h2>{{ "page.sensorForm.titleCreate" | translate }}</h2>
+
+<div>
+  <label for="device">{{ "page.sensorForm.device" | translate }}</label>
+  <div class="form-group">
+    <ng-multiselect-dropdown
+      [placeholder]="'page.sensorForm.placeholder.device' | translate"
+      [settings]="deviceMultiselectSettings"
+      [data]="deviceList"
+      [(ngModel)]="deviceSelected"
+      (onSelect)="device = $event"
+      (onDeSelect)="device = null"
+    >
+    </ng-multiselect-dropdown>
+  </div>
+</div>
+
+<div>
+  <label for="sensorType">{{ "page.sensorForm.sensorType" | translate }}</label>
+  <div class="form-group">
+    <ng-multiselect-dropdown
+      [placeholder]="'page.sensorForm.placeholder.sensorType' | translate"
+      [settings]="sensorTypeMultiselectSettings"
+      [data]="sensorTypeList"
+      [(ngModel)]="sensorTypeSelected"
+      (onSelect)="sensorType = $event"
+      (onDeSelect)="sensorType = null"
+    >
+    </ng-multiselect-dropdown>
+  </div>
+</div>
+
+<app-sensor-form
+  formType="CREATE"
+  [deviceId]="device.id"
+  [sensorTypeId]="sensorType.id"
+  *ngIf="device && sensorType"
+></app-sensor-form>

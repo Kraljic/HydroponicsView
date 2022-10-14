@@ -1,0 +1,169 @@
+<h2 class="float-left">{{ "page.userList.title" | translate }}</h2>
+<div class="float-right" *ngIf="hasUserManagementCreatePermission()">
+  <a routerLink="/user-add" class="btn btn-success my-3">
+    {{ "page.userList.addUser" | translate }}
+    <fa-icon [icon]="FAS.faUserPlus"></fa-icon>
+  </a>
+</div>
+<table class="table table-striped" *ngIf="userList">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{ "page.userList.table.username" | translate }}</th>
+      <th scope="col">{{ "page.userList.table.email" | translate }}</th>
+      <th scope="col" *ngIf="hasUserManagementWritePermission()">
+        {{ "page.userList.table.actions" | translate }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userList">
+      <td scope="row">{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td *ngIf="hasUserManagementWritePermission()" class="justify">
+        <span>
+          <a
+            routerLink="/user-info/{{ user.username }}"
+            [ngbTooltip]="'page.userList.userInfo' | translate"
+          >
+            <fa-icon [icon]="FAS.faInfoCircle" class="text-primary"></fa-icon>
+          </a>
+        </span>
+        &nbsp;
+        <ng-container *ngIf="!user.writeProtected">
+          <span>
+            <a
+              routerLink="/password-edit/{{ user.username }}"
+              [ngbTooltip]="'page.userList.editPassword' | translate"
+            >
+              <fa-icon [icon]="FAS.faKey"></fa-icon>
+            </a>
+          </span>
+          &nbsp;
+          <ng-container *ngIf="canAssignRole()">
+            <span>
+              <a
+                routerLink="/roles-edit/{{ user.username }}"
+                [ngbTooltip]="'page.userList.editRoles' | translate"
+              >
+                <fa-icon
+                  [icon]="FAS.faUserShield"
+                  class="text-warning"
+                ></fa-icon>
+              </a>
+            </span>
+            &nbsp;
+          </ng-container>
+          <span>
+            <app-base-modal
+              [config]="MODAL_CONFIRM_CONFIG"
+              [title]="
+                (user.active
+                  ? 'component.modal.user.disable.title'
+                  : 'component.modal.user.enable.title'
+                ) | translate
+              "
+              [message]="
+                (user.active
+                  ? 'component.modal.user.disable.message'
+                  : 'component.modal.user.enable.message'
+                ) | translate: { username: user.username }
+              "
+              (confirmEvent)="toggleUserEnabled(user)"
+              #modalEnabled
+            ></app-base-modal>
+            <a
+              [routerLink]=""
+              (click)="modalEnabled.open()"
+              [ngbTooltip]="
+                (user.active
+                  ? 'page.userList.userEnable'
+                  : 'page.userList.userDisable'
+                ) | translate
+              "
+            >
+              <ng-container *ngIf="user.active">
+                <fa-icon [icon]="FAS.faUser" class="text-success"></fa-icon>
+              </ng-container>
+              <ng-container *ngIf="!user.active">
+                <fa-icon [icon]="FAS.faUserSlash" class="text-danger"></fa-icon>
+              </ng-container>
+            </a>
+          </span>
+          &nbsp;
+          <span>
+            <app-base-modal
+              [config]="MODAL_DELETE_CONFIG"
+              [title]="'component.modal.user.delete.title' | translate"
+              [message]="
+                'component.modal.user.delete.message'
+                  | translate: { username: user.username }
+              "
+              (confirmEvent)="deleteUser(user)"
+              #modalDelete
+            ></app-base-modal>
+            <a
+              [routerLink]=""
+              (click)="modalDelete.open()"
+              [ngbTooltip]="'page.userList.deleteUser' | translate"
+            >
+              <fa-icon [icon]="FAS.faTrash" class="text-danger"></fa-icon>
+            </a>
+          </span>
+          &nbsp;
+        </ng-container>
+
+        <ng-container *ngIf="canLockUsers()">
+          <!-- Enable change of lock status -->
+          <app-base-modal
+            [config]="MODAL_CONFIRM_CONFIG"
+            [title]="
+              (user.writeProtected
+                ? 'component.modal.user.unlock.title'
+                : 'component.modal.user.lock.title'
+              ) | translate
+            "
+            [message]="
+              (user.writeProtected
+                ? 'component.modal.user.unlock.message'
+                : 'component.modal.user.lock.message'
+              ) | translate: { username: user.username }
+            "
+            (confirmEvent)="toggleUserLock(user)"
+            #modalLock
+          ></app-base-modal>
+          <span>
+            <a
+              [routerLink]=""
+              (click)="modalLock.open()"
+              [ngbTooltip]="
+                (user.writeProtected
+                  ? 'page.userList.userUnlock'
+                  : 'page.userList.userLock'
+                ) | translate
+              "
+            >
+              <ng-container *ngIf="user.writeProtected">
+                <fa-icon [icon]="FAS.faLock" class="text-danger"></fa-icon>
+              </ng-container>
+              <ng-container *ngIf="!user.writeProtected">
+                <fa-icon [icon]="FAS.faUnlock" class="text-success"></fa-icon>
+              </ng-container>
+            </a>
+          </span>
+          &nbsp;
+        </ng-container>
+
+        <ng-container *ngIf="!canLockUsers()">
+          <!-- Show only lock status -->
+          <span>
+            <ng-container *ngIf="user.writeProtected">
+              <fa-icon [icon]="FAS.faLock" class="text-danger"></fa-icon>
+            </ng-container>
+          </span>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>

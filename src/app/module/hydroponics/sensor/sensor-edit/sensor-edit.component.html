@@ -1,0 +1,30 @@
+<h2 *ngIf="true">{{ "page.sensorForm.titleEdit" | translate }}</h2>
+<div>
+  <label>{{ "page.sensorForm.device" | translate }}</label>
+  <div class="form-group">
+    <input
+      [(ngModel)]="sensor.device.name"
+      type="text"
+      class="form-control"
+      disabled
+    />
+  </div>
+</div>
+<div>
+  <label>{{ "page.sensorForm.sensorType" | translate }}</label>
+  <div class="form-group">
+    <input
+      [(ngModel)]="sensor.sensorType.type"
+      type="text"
+      class="form-control"
+      disabled
+    />
+  </div>
+</div>
+
+<app-sensor-form
+  formType="EDIT"
+  [sensorCommand]="sensorCommand"
+  [sensorId]="sensor.id"
+  *ngIf="sensor"
+></app-sensor-form>

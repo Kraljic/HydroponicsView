@@ -1,0 +1,51 @@
+<span>
+  <a
+    [routerLink]="[DEVICE_PATH_FULL.INFO, device.id]"
+    [ngbTooltip]="'page.deviceList.info' | translate"
+  >
+    <fa-icon [icon]="FAS.faInfoCircle" class="text-primary"></fa-icon>
+  </a>
+</span>
+&nbsp;
+<span>
+  <a
+    [routerLink]="[SENSOR_PATH_FULL.LIST]"
+    [queryParams]="{ deviceId: device.id }"
+    [ngbTooltip]="'page.deviceList.sensors' | translate"
+  >
+    <fa-icon [icon]="FAS.faMicroscope" class="text-primary"></fa-icon>
+  </a>
+</span>
+&nbsp;
+
+<ng-container *ngIf="hasWritePermission">
+  <span>
+    <a
+      [routerLink]="[DEVICE_PATH_FULL.EDIT, device.id]"
+      [ngbTooltip]="'page.deviceList.edit' | translate"
+    >
+      <fa-icon [icon]="FAS.faEdit" class="text-warning"></fa-icon>
+    </a>
+  </span>
+  &nbsp;
+
+  <app-base-modal
+    [config]="MODAL_DELETE_CONFIG"
+    [title]="'component.modal.device.delete.title' | translate"
+    [message]="
+      'component.modal.device.delete.message'
+        | translate: { device: device.name }
+    "
+    (confirmEvent)="delete()"
+    #modalDelete
+  ></app-base-modal>
+  <span>
+    <a
+      [routerLink]=""
+      (click)="modalDelete.open()"
+      [ngbTooltip]="'page.deviceList.delete' | translate"
+    >
+      <fa-icon [icon]="FAS.faTrash" class="text-danger"></fa-icon>
+    </a>
+  </span>
+</ng-container>

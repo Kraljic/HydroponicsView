@@ -1,0 +1,54 @@
+<span>
+  <a
+    [routerLink]="[SENSOR_PATH_FULL.INFO, sensor.id]"
+    [ngbTooltip]="'page.sensorList.info' | translate"
+  >
+    <fa-icon [icon]="FAS.faInfoCircle" class="text-primary"></fa-icon>
+  </a>
+</span>
+&nbsp;
+
+<ng-container *ngIf="hasSensorVariableWritePermission">
+  <span>
+    <a
+      [routerLink]="[SENSOR_PATH_FULL.EDIT_VARIABLE, sensor.id]"
+      [ngbTooltip]="'page.sensorList.editVariable' | translate"
+    >
+      <fa-icon [icon]="FAS.faThermometerQuarter" class="text-warning"></fa-icon>
+    </a>
+  </span>
+  &nbsp;
+</ng-container>
+
+<ng-container *ngIf="hasWritePermission">
+  <span>
+    <a
+      [routerLink]="[SENSOR_PATH_FULL.EDIT, sensor.id]"
+      [ngbTooltip]="'page.sensorList.edit' | translate"
+    >
+      <fa-icon [icon]="FAS.faEdit" class="text-warning"></fa-icon>
+    </a>
+  </span>
+  &nbsp;
+
+  <app-base-modal
+    [config]="MODAL_DELETE_CONFIG"
+    [title]="'component.modal.sensor.delete.title' | translate"
+    [message]="
+      'component.modal.sensor.delete.message'
+        | translate: { sensor: sensor.name }
+    "
+    (confirmEvent)="delete()"
+    #modalDelete
+  ></app-base-modal>
+  <span>
+    <a
+      [routerLink]=""
+      (click)="modalDelete.open()"
+      [ngbTooltip]="'page.sensorList.delete' | translate"
+    >
+      <fa-icon [icon]="FAS.faTrash" class="text-danger"></fa-icon>
+    </a>
+  </span>
+  &nbsp;
+</ng-container>

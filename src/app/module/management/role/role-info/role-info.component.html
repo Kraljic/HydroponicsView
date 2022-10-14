@@ -1,0 +1,59 @@
+<div *ngIf="role">
+  <h3>
+    {{ role.role }}
+
+    <small>
+      <ng-container *ngIf="role.locked">
+        {{ "page.roleInfo.statusLocked" | translate }}
+        <fa-icon [icon]="FAS.faLock" class="text-danger"></fa-icon>
+      </ng-container>
+      <ng-container *ngIf="!role.locked">
+        {{ "page.roleInfo.statusUnlocked" | translate }}
+        <fa-icon [icon]="FAS.faUnlock" class="text-success"></fa-icon>
+      </ng-container>
+    </small>
+  </h3>
+
+  <button
+    *ngIf="!role.locked"
+    (click)="edit()"
+    class="btn btn-success mr-2 my-2"
+    type="button"
+  >
+    {{ "page.roleInfo.edit" | translate }}
+  </button>
+
+  <app-base-modal
+    [config]="MODAL_DELETE_CONFIG"
+    [title]="'component.modal.role.delete.title' | translate"
+    [message]="
+      'component.modal.role.delete.message' | translate: { role: role.role }
+    "
+    (confirmEvent)="delete()"
+    #modal
+  ></app-base-modal>
+  <button
+    *ngIf="!role.locked"
+    (click)="modal.open()"
+    class="btn btn-danger mx-2"
+    type="button"
+  >
+    {{ "page.roleInfo.delete" | translate }}
+  </button>
+
+  <h5>{{ "page.roleInfo.authorities" | translate }}</h5>
+  <ul class="list-unstyled mx-3">
+    <li *ngFor="let permission of getSortedPermissions()">{{ permission }}</li>
+  </ul>
+
+  <ng-container *ngIf="roleUsers">
+    <h5>{{ "page.roleInfo.users" | translate }}</h5>
+    <ul class="list-unstyled mx-3">
+      <li *ngFor="let user of roleUsers">{{ user.username }}</li>
+    </ul>
+  </ng-container>
+
+  <button (click)="goBack()" class="btn btn-primary my-2" type="button">
+    {{ "page.roleInfo.goBackButton" | translate }}
+  </button>
+</div>

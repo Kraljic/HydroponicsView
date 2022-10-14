@@ -1,0 +1,31 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <h3>{{ "template.deviceInfo.title" | translate }}</h3>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.deviceInfo.name" | translate }}</small>
+        </div>
+        <div class="col-md-10">{{ device.name }}</div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.deviceInfo.description" | translate }}</small>
+        </div>
+        <div class="col-md-10">{{ device.description }}</div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-2 text-uppercase">
+          <small>{{ "template.deviceInfo.firmware" | translate }}</small>
+        </div>
+        <div class="col-md-10">{{ device.firmware }}</div>
+      </div>
+    </li>
+  </ul>
+</div>

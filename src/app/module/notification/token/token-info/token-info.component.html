@@ -1,0 +1,50 @@
+<h2>{{ "page.tokenInfo.title" | translate }}</h2>
+
+<app-base-modal
+  [config]="MODAL_CONFIRM_CONFIG"
+  [title]="'component.modal.token.reset.title' | translate"
+  [message]="'component.modal.token.reset.message' | translate"
+  (confirmEvent)="resetToken()"
+  #modalResetToken
+></app-base-modal>
+
+<label>{{ "page.tokenInfo.token" | translate }}</label>
+<div class="input-group mb-3">
+  <input
+    [type]="showToken ? 'text' : 'password'"
+    class="form-control"
+    [value]="token"
+    readonly
+    #tokenCopyElement
+  />
+
+  <div class="input-group-append">
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="toggleTokenShow()"
+    >
+      {{
+        (showToken ? "page.tokenInfo.hide" : "page.tokenInfo.show") | translate
+      }}
+    </button>
+
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="copyToken(tokenCopyElement)"
+    >
+      {{ "page.tokenInfo.copy" | translate }}
+    </button>
+
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="modalResetToken.open()"
+    >
+      {{ "page.tokenInfo.reset" | translate }}
+    </button>
+  </div>
+</div>
+
+<small>{{ "page.tokenInfo.tokenNote" | translate }}</small>

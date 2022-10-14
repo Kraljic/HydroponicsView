@@ -1,0 +1,12 @@
+import { HYDROPONIC_MODULE_BASE_ROUTE } from '../module-route-name';
+
+const SENSOR_TYPE_BASE = 'sensor-type';
+const SENSOR_TYPE_BASE_FULL =
+  HYDROPONIC_MODULE_BASE_ROUTE + '/' + SENSOR_TYPE_BASE;
+
+export const SENSOR_TYPE_PATH_FULL = {
+  LIST: SENSOR_TYPE_BASE_FULL,
+  ADD: SENSOR_TYPE_BASE_FULL + '/add',
+  EDIT: SENSOR_TYPE_BASE_FULL + '/edit',
+  INFO: SENSOR_TYPE_BASE_FULL + '/info',
+};

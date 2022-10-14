@@ -1,0 +1,61 @@
+<h2>{{ "page.editProfile.title" | translate }}</h2>
+<form class="" [formGroup]="formGroup">
+  <label for="firstName">{{ "page.editProfile.firstName" | translate }}</label>
+  <div class="form-group">
+    <input
+      formControlName="firstName"
+      [(ngModel)]="profileCommand.firstName"
+      type="text"
+      class="form-control"
+      [placeholder]="'page.editProfile.placeholder.firstName' | translate"
+      maxlength="45"
+    />
+
+    <app-validation-error
+      [control]="f.firstName"
+      [controlName]="'firstName'"
+      [translationKey]="'editProfile'"
+    ></app-validation-error>
+  </div>
+
+  <label for="lastName">{{ "page.editProfile.lastName" | translate }}</label>
+  <div class="form-group">
+    <input
+      formControlName="lastName"
+      [(ngModel)]="profileCommand.lastName"
+      type="text"
+      class="form-control"
+      [placeholder]="'page.editProfile.placeholder.lastName' | translate"
+      maxlength="45"
+    />
+
+    <app-validation-error
+      [control]="f.lastName"
+      [controlName]="'lastName'"
+      [translationKey]="'editProfile'"
+    ></app-validation-error>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="float-right">
+        <button
+          (click)="cancle()"
+          [disabled]="saving"
+          class="btn btn-outline-secondary mr-4"
+          type="button"
+        >
+          {{ "page.editProfile.cancle" | translate }}
+        </button>
+        <button
+          (click)="save()"
+          [disabled]="!formGroup.valid || saving"
+          class="btn btn-success"
+          type="button"
+        >
+          {{ "page.editProfile.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,51 @@
+<h3>
+  {{ user.username }}
+
+  <small>
+    <ng-container *ngIf="user.writeProtected">
+      {{ "page.userInfo.statusLocked" | translate }}
+      <fa-icon [icon]="FAS.faLock" class="text-danger"></fa-icon>
+    </ng-container>
+    <ng-container *ngIf="!user.writeProtected">
+      {{ "page.userInfo.statusUnlocked" | translate }}
+      <fa-icon [icon]="FAS.faUnlock" class="text-success"></fa-icon>
+    </ng-container>
+  </small>
+</h3>
+
+<button
+  *ngIf="!user.writeProtected"
+  (click)="edit()"
+  class="btn btn-success mr-2 my-2"
+  type="button"
+>
+  {{ "page.userInfo.edit" | translate }}
+</button>
+
+<app-base-modal
+  [config]="MODAL_DELETE_CONFIG"
+  [title]="'component.modal.user.delete.title' | translate"
+  [message]="
+    'component.modal.user.delete.message'
+      | translate: { username: user.username }
+  "
+  (confirmEvent)="delete()"
+  #modal
+></app-base-modal>
+<button
+  *ngIf="!user.writeProtected"
+  (click)="modal.open()"
+  class="btn btn-danger mx-2"
+  type="button"
+>
+  {{ "page.userInfo.delete" | translate }}
+</button>
+
+<h5>{{ "page.userInfo.roles" | translate }}</h5>
+<ul class="list-unstyled mx-3">
+  <li *ngFor="let role of getSortedRoles()">{{ role.role }}</li>
+</ul>
+
+<button (click)="goBack()" class="btn btn-primary my-2" type="button">
+  {{ "page.userInfo.goBackButton" | translate }}
+</button>

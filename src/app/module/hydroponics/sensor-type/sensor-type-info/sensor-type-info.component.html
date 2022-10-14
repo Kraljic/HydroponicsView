@@ -1,0 +1,9 @@
+<h2>{{ "page.sensorTypeInfo.title" | translate }}</h2>
+
+<ng-container *ngIf="sensorType">
+  <app-sensor-type-info-template
+    [sensorType]="sensorType"
+  ></app-sensor-type-info-template>
+</ng-container>
+
+<app-back-button></app-back-button>

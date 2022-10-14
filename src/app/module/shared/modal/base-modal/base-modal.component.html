@@ -1,0 +1,45 @@
+<ng-template #content let-modal>
+  <div class="modal-header" [ngClass]="config?.headerClass">
+    <h4 class="modal-title" id="modal-title">{{ title }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-describedby="modal-title"
+      (click)="modal.close(); cancleEvent?.emit()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" [innerHTML]="message"></div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn mr-auto"
+      [ngClass]="config?.cancleClass"
+      ngbAutofocus
+      (click)="modal.close(); cancleEvent?.emit()"
+      *ngIf="!!config?.cancleBtnShow"
+    >
+      {{ config?.cancleText | translate }}
+    </button>
+
+    <button
+      type="button"
+      class="btn"
+      [ngClass]="config?.denyClass"
+      (click)="modal.close(); denyEvent?.emit()"
+      *ngIf="!!config?.denyBtnShow"
+    >
+      {{ config?.denyText | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn"
+      [ngClass]="config?.confirmClass"
+      (click)="modal.close(); confirmEvent?.emit()"
+      *ngIf="!!config?.confirmBtnShow"
+    >
+      {{ config?.confirmText | translate }}
+    </button>
+  </div>
+</ng-template>
